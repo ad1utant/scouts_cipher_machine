@@ -1,10 +1,10 @@
 def Transliteration(inp):
-    inp.replace('ą','a')
-    inp.replace('ć','c')
-    inp.replace('ę','e')
-    inp.replace('ł','l')
-    inp.replace('ó','o')
-    inp.replace('ś','s')
-    inp.replace('ż','z')
-    inp.replace('ź','z')
+    inp = inp.replace('ą','a')
+    inp = inp.replace('ć','c')
+    inp = inp.replace('ę','e')
+    inp = inp.replace('ł','l')
+    inp = inp.replace('ó','o')
+    inp = inp.replace('ś','s')
+    inp = inp.replace('ż','z')
+    inp = inp.replace('ź','z')
     return inp
