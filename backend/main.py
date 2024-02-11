@@ -1,9 +1,10 @@
 from functions.transliteration import Transliteration
 from functions.createdict import CreateDict
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-if __name__ == '__main__':
-    key = input('type a key: ')
-    inp = Transliteration(input('type a prompt to code or decode: '))
+def cipher(key,prompt):
+    inp = Transliteration(prompt)
     dict = CreateDict(key)
     temp = True
     newConsole = ""
@@ -16,4 +17,36 @@ if __name__ == '__main__':
         if temp:
             newConsole += i
         temp = True
-    print(newConsole)
+    return newConsole
+
+
+app = FastAPI()
+
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET"],
+    allow_headers=["*"],
+)
+@app.get('/')
+async def root():
+    return {'message' : 'sample'}
+
+
+@app.get('/{key}+{prompt}')
+async def cipher_route(key: str, prompt: str):
+    newConsole = cipher(key, prompt)
+
+    return {'key': key,
+            'prompt' : prompt,
+            'newPrompt' : newConsole}
+
+
+
+
+
