@@ -18,6 +18,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        customGray: '#9d9e9d',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -73,5 +74,13 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), function({ addUtilities }) {
+    const newUtilities = {
+      '.whitespace-pre-line': {
+        'white-space': 'pre-line',
+      },
+    };
+
+    addUtilities(newUtilities, ['responsive', 'hover']);
+  },],
 }
