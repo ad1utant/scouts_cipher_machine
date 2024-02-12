@@ -1,4 +1,7 @@
+import '../styles/index.css'
 import {useRef} from "react";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input.jsx";
 
 function App() {
     const formRef = useRef();
@@ -23,10 +26,10 @@ function App() {
     }
   return (
       <div>
-          <form ref={formRef}>
-              <input type={"text"} name={'promptInput'} placeholder={'prompt'}/>
-              <input type={"text"} name={'keyInput'} placeholder={'key'}/>
-              <button type={"submit"} onClick={handleSubmit}>submit</button>
+          <form className={'flex justify-center gap-2'} ref={formRef}>
+              <Input type={"text"} name={'promptInput'} placeholder={'prompt'}/>
+              <Input type={"text"} name={'keyInput'} placeholder={'key'}/>
+              <Button type={"submit"} onClick={handleSubmit}>submit</Button>
           </form>
       </div>
   )
