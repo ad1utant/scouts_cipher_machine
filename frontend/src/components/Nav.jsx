@@ -11,7 +11,7 @@ function Nav(){
                 <div className={'font flex gap-4 items-center text-sm text-muted-foreground font-semibold'} >
                     <Link className={'text-lg text-foreground gap-1 text-lg font-semibold flex items-center'} to={'/'}>
                         <Code2 />
-                        Sipher.com
+                        Scout Ciphers
                     </Link>
                     <Link to={'/'}>
                         Home
