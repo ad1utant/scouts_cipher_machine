@@ -1,5 +1,6 @@
 from functions.transliteration import Transliteration
 from functions.createdict import CreateDict
+from functions.keyformat import KeyFormat
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -68,7 +69,7 @@ async def cipher_break(ciphered_message: str):
     for key in keys:
         procent = 0
         deciphered = cipher(key, ciphered_message)
-        array.append((deciphered, key))
+        array.append((deciphered, KeyFormat(key)))
 
 
 
@@ -77,7 +78,7 @@ async def cipher_break(ciphered_message: str):
                 procent += 1
 
         if procent / len(deciphered.split()) > 0.3:
-            most_likely = [key,deciphered, round((procent / len(deciphered.split())) * 100)]
+            most_likely = [KeyFormat(key), deciphered, round((procent / len(deciphered.split())) * 100)]
 
     return {'ciphered' : ciphered_message,
             'deciphered' : array,
