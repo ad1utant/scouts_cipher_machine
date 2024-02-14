@@ -2,6 +2,7 @@ import {Separator} from "@/components/ui/separator.jsx";
 import {Link} from "react-router-dom";
 import {Code2, Github, Instagram, Sun} from 'lucide-react'
 import {Button} from "@/components/ui/button.jsx";
+import {ModeToggle} from "@/components/mode-toggle.jsx";
 function Nav(){
     return(
         <>
@@ -32,11 +33,7 @@ function Nav(){
                             <Instagram/>
                         </Button>
                     </a>
-                    <Link to={'/whitemode'}>
-                        <Button variant={'ghost'}>
-                            <Sun/>
-                        </Button>
-                    </Link>
+                    <ModeToggle/>
                 </div>
 
             </div>
