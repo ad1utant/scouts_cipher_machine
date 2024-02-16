@@ -1,6 +1,7 @@
 import PairCiphers from "@/components/PairCiphers.jsx";
 import Nav from "@/components/Nav.jsx";
 import { ThemeProvider } from "@/components/theme-provider"
+import Footer from "@/components/Footer.jsx";
 function App(){
     return(
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -13,6 +14,9 @@ function App(){
                     <PairCiphers/>
                 </div>
                 <div className={'col-span-2'}/>
+                <div className={'col-span-12'}>
+                    <Footer/>
+                </div>
             </div>
         </ThemeProvider>
     )

@@ -22,14 +22,14 @@ function Nav(){
                     </Link>
                 </div>
 
-                <div className={'flex items-center gap-1'}>
+                <div className={'flex items-center gap-4'}>
                     <a target={'_blank'} href={'https://github.com/ad1utant/scouts_cipher_machine'}>
-                        <Button variant={'ghost'}>
+                        <Button variant={'ghost'} size={'icon'}>
                             <Github/>
                         </Button>
                     </a>
                     <a href={'https://www.instagram.com/kapral.kowalski/'} target={'_blank'}>
-                        <Button variant={'ghost'}>
+                        <Button variant={'ghost'} size={'icon'}>
                             <Instagram/>
                         </Button>
                     </a>
