@@ -7,10 +7,10 @@ function Nav(){
     return(
         <>
         <div className={'grid grid-cols-12 items-center p-2'}>
-            <div className={'col-span-2'}/>
-            <div className={'flex justify-between col-span-8'}>
-                <div className={'font flex gap-4 items-center text-sm text-muted-foreground font-semibold'} >
-                    <Link className={'text-lg text-foreground gap-1 text-lg font-semibold flex items-center'} to={'/'}>
+            <div className={'col-span-1 md:col-span-2'}/>
+            <div className={'flex justify-end md:justify-between col-span-10 md:col-span-8'}>
+                <div className={'font hidden md:flex gap-4 items-center text-sm text-muted-foreground font-semibold'} >
+                    <Link className={'text-lg text-foreground gap-1 font-semibold flex items-center'} to={'/'}>
                         <Code2 />
                         Scout&nbsp;Ciphers
                     </Link>
@@ -37,7 +37,7 @@ function Nav(){
                 </div>
 
             </div>
-            <div className={'col-span-2'}/>
+            <div className={'col-span-1 md:col-span-2'}/>
         </div>
         <Separator/>
     </>

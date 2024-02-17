@@ -9,11 +9,11 @@ function App(){
                 <div className={'col-span-12'}>
                         <Nav/>
                 </div>
-                <div className={'col-span-2'}/>
-                <div className={'col-span-8'}>
+                <div className={'col-span-1 md:col-span-2'}/>
+                <div className={'col-span-10 md:col-span-8'}>
                     <PairCiphers/>
                 </div>
-                <div className={'col-span-2'}/>
+                <div className={'col-span-1 md:col-span-2'}/>
                 <div className={'col-span-12'}>
                     <Footer/>
                 </div>

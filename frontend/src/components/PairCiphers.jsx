@@ -1,7 +1,6 @@
 import '../styles/index.css'
 import {useRef, useState} from "react";
 import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input.jsx";
 import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
 
@@ -95,10 +94,9 @@ function PairCiphers(props) {
   return (
       <div className={'grid mt-4 grid-cols-5'}>
           <h1 className={'col-span-5 scroll-m-20 text-4xl font-extrabold lg:text-5xl'}>Monoalfabetyczne szyfry podstawieniowe</h1>
-          <div className={'col-span-2'}></div>
           <p className={'mt-4 col-span-5 text-xl text-muted-foreground'}>W słowie szyfrowanym każdą kolejną literę podmieniamy na literę będącą w parze z literą podmienianą. W przypadku niewystępowania danej litery w kluczu, zostaje ona przepisana. Szyfry te nie uwzględniają polskich znaków.</p>
           <div className={'grid grid-cols-6 col-span-5 justify-between'}>
-              <div className={'items-start rounded mt-4 bg-muted p-4 col-span-3 mr-2'}>
+              <div className={'items-start rounded mt-4 bg-muted p-4 col-span-6 md:col-span-3 md:mr-2'}>
                   <h4 className={'col-span-1 scroll-m-20 text-xl font-bold'}>Lista szyfrów monoalfabetycznych</h4>
                   <ul className="list-disc p-0 m-0 ps-1 [&>li]:mt-1 list-inside">
                       <li>GA-DE-RY-PO-LU-KI</li>
@@ -109,7 +107,7 @@ function PairCiphers(props) {
                   </ul>
               </div>
 
-              <div className={'items-start rounded mt-4 bg-muted p-4 col-span-3 ml-2'}>
+              <div className={'items-start rounded mt-4 bg-muted p-4 col-span-6 md:col-span-3 sm:col-span-6 md:ml-2'}>
                 <h4 className={'col-span-1 scroll-m-20 text-xl font-bold'}>Proces Szyfrowania</h4>
                 <p className={'leading-7 [&:not(:first-child)]:mt-1 whitespace-pre-line'}>
 
@@ -130,9 +128,9 @@ function PairCiphers(props) {
           <p className={'col-span-5 text-xl text-muted-foreground'}>Poniżej znajduje się program, dzięki któremu możesz zaszyfrować lub odszyfrować swoją wiadomość w błyskawicznym tempie. Wystarczy podać treść, wybrać klucz, a następnie nacisnąć przycisk!</p>
 
           <form className={'gap-4 mt-4 col-span-5 grid grid-cols-12'} ref={cipherDecipherRef}>
-              <Textarea className={'col-span-7'} type={"text"} name={'promptInput'} placeholder={'zaszyfruj lub odszyfruj wiadomość'}/>
-              <div className={'col-span-5 grid grid-cols-1 border-box'}>
-                  <div className={'col-span-5 grid grid-cols-1 border-box'}>
+              <Textarea className={'col-span-12 md:col-span-7'} type={"text"} name={'promptInput'} placeholder={'zaszyfruj lub odszyfruj wiadomość'}/>
+              <div className={'md:col-span-5 col-span-12 grid grid-cols-2 border-box'}>
+                  <div className={'col-span-1 md:col-span-2 mr-2 md:mr-0 grid grid-cols-1  border-box'}>
                     <Popover open={comboboxOpen} onOpenChange={setComboboxOpen}>
                       <PopoverTrigger asChild>
                           <Button
@@ -175,7 +173,7 @@ function PairCiphers(props) {
                       </PopoverContent>
                   </Popover>
                   </div>
-                  <div className={'col-span-5 grid grid-cols-1 border-box'}>
+                  <div className={'col-span-1 md:col-span-2 ml-2 md:ml-0 grid grid-cols-1 border-box'}>
                     <Button type={"submit"} variant={'secondary'} onClick={handleCipherDecpiherSubmit}>submit</Button>
                   </div>
               </div>
@@ -188,10 +186,10 @@ function PairCiphers(props) {
           <p className={'col-span-5 text-xl text-muted-foreground'}>Poniżej znajduje się program, dzięki któremu możesz odszyfrować wiadomość, bez znajomości klucz. Wystarczy podać treść, a następnie nacisnąć przycisk!</p>
 
           <form className={'gap-4 mt-4 col-span-5 grid grid-cols-12'} ref={decipherRef}>
-              <Textarea className={'col-span-7'} type={"text"} name={'textarea'} placeholder={'odszyfruj wiadomość o nieznanym kluczu'}/>
-              <div className={'col-span-5 grid grid-cols-1e'}>
-                        <Button type={'submit'} className={'col-span-1 flex justify-center'} disabled variant={'outline'}>Kryptogram o nieznanym kluczu</Button>
-                        <Button className={'col-span-1'} variant={'secondary'} type={"submit"} onClick={handleDecipherSubmit}>submit</Button>
+              <Textarea className={'col-span-12 md:col-span-7 mr-2 md:mr-0'} type={"text"} name={'textarea'} placeholder={'odszyfruj wiadomość o nieznanym kluczu'}/>
+              <div className={'col-span-12 md:col-span-5 grid grid-cols-2'}>
+                        <Button type={'submit'} className={'col-span-1 md:col-span-2'} disabled variant={'outline'}>nieznany klucz</Button>
+                        <Button className={'col-span-1 md:col-span-2 ml-2 md:ml-0'} variant={'secondary'} type={"submit"} onClick={handleDecipherSubmit}>submit</Button>
               </div>
 
 
