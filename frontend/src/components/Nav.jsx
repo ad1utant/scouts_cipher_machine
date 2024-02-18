@@ -14,11 +14,11 @@ function Nav(){
                         <Code2 />
                         Scout&nbsp;Ciphers
                     </Link>
-                    <Link to={'/'}>
-                        Home
+                    <Link to={'/pair'}>
+                        Podstawieniowe
                     </Link>
-                    <Link to={'/signin'}>
-                        Sign&nbsp;in
+                    <Link to={'/fract'}>
+                        Ułamkowy
                     </Link>
                 </div>
 
