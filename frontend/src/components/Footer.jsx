@@ -12,7 +12,7 @@ function Footer(){
                 <div className={'col-span-1 md:col-span-2'}/>
                 <div className={'flex justify-end md:justify-between col-span-10 md:col-span-8'}>
                     <div className={'font flex hidden md:block gap-4 items-center text-sm text-muted-foreground'} >
-                        All rights reserved © 2023
+                        All rights reserved © 2024
                     </div>
                     <div className={'font flex gap-4 items-center text-sm text-muted-foreground'} >
                         Made by Mikołaj Marasek

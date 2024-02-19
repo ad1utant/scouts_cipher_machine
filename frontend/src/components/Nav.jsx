@@ -17,6 +17,9 @@ function Nav(){
                     <Link to={'/pair'}>
                         Podstawieniowe
                     </Link>
+                    <Link to={'/morsea'}>
+                        Morse'a
+                    </Link>
                     <Link to={'/fract'}>
                         Ułamkowy
                     </Link>
