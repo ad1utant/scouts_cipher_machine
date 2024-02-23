@@ -54,7 +54,7 @@ function PairCiphers(props) {
         const textareaValue =  decipherRef.current.elements.textarea.value;
         async function fetchRequest(){
             try {
-                const response = await fetch(`http://127.0.0.1:8000/${textareaValue}`);
+                const response = await fetch(`http://127.0.0.1:8000/pair/${textareaValue}`);
                 const newConsole = await response.json();
                 const mostLikelyKey = newConsole.most_likely[0]
                 const mostLikelyMessage = newConsole.most_likely[1]
@@ -77,7 +77,7 @@ function PairCiphers(props) {
         const keyValue = comboboxValue;
         async function fetchRequest(){
             try {
-                const response = await fetch(`http://127.0.0.1:8000/${keyValue}+${promptValue}`);
+                const response = await fetch(`http://127.0.0.1:8000/pair/${keyValue}+${promptValue}`);
                 const newConsole = await response.json();
                 const {newPrompt} = newConsole;
                 console.log(newPrompt)

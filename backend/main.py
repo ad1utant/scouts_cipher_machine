@@ -3,6 +3,9 @@ from functions.createdict import CreateDict
 from functions.keyformat import KeyFormat
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import json
+
+
 
 keys = [
     'gaderypoluki',
@@ -12,7 +15,7 @@ keys = [
     'malinowebuty'
 ]
 
-def cipher(key,prompt):
+def cipher_pairs(key, prompt):
     inp = Transliteration(prompt)
     dict = CreateDict(key)
     temp = True
@@ -44,18 +47,18 @@ app.add_middleware(
 )
 @app.get('/')
 async def root():
-    return {'message' : 'sample'}
+    return {'python server' : 'works correctly'}
 
 
-@app.get('/{key}+{prompt}')
-async def cipher_route(key: str, prompt: str):
-    newConsole = cipher(key, prompt)
+@app.get('/pair/{key}+{prompt}')
+async def cipher_route_pairs(key: str, prompt: str):
+    newConsole = cipher_pairs(key, prompt)
 
     return {'key': key,
             'prompt' : prompt,
             'newPrompt' : newConsole}
 
-@app.get('/{ciphered_message}')
+@app.get('/pair/{ciphered_message}')
 async def cipher_break(ciphered_message: str):
     array = []
 
@@ -68,7 +71,7 @@ async def cipher_break(ciphered_message: str):
     most_likely = 0
     for key in keys:
         procent = 0
-        deciphered = cipher(key, ciphered_message)
+        deciphered = cipher_pairs(key, ciphered_message)
         array.append((deciphered, KeyFormat(key)))
 
 
@@ -84,7 +87,18 @@ async def cipher_break(ciphered_message: str):
             'deciphered' : array,
             'most_likely' : most_likely}
 
+@app.get('/morse/{ciphered_message}')
+async def cipher_morse(ciphered_message):
+    with open('assets\\mors.json', 'r') as f:
+        mors = json.load(f)
 
+    deciphered_message = ''
+    for sign in ciphered_message:
+        for key in mors.keys():
+            if key == sign or key.upper() == sign:
+                deciphered_message += mors[key]
+                breako
+        deciphered_message += '/' if sign != ' ' else ''
 
-
+    return {'deciphered' : deciphered_message}
 

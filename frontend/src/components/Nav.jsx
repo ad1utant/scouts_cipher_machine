@@ -17,7 +17,7 @@ function Nav(){
                     <Link to={'/pair'}>
                         Podstawieniowe
                     </Link>
-                    <Link to={'/morsea'}>
+                    <Link to={'/morse'}>
                         Morse'a
                     </Link>
                     <Link to={'/fract'}>

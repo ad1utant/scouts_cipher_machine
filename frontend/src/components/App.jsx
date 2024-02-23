@@ -18,7 +18,7 @@ function App(){
                         <Route path={'/pair'} element={<PairCiphers/>}/>
                         <Route path={'/'} element={<Navigate to={'/pair'}/>}/>
                         <Route path={'/fract'} element={<Fractions/>} />
-                        <Route path={'/morsea'} element={<Morsea/>} />
+                        <Route path={'/morse'} element={<Morsea/>} />
                     </Routes>
                 </div>
                 <div className={'col-span-1 md:col-span-2'}/>
