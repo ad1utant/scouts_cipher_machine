@@ -45,11 +45,6 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
-@app.get('/')
-async def root():
-    return {'python server' : 'works correctly'}
-
-
 @app.get('/pair/{key}+{prompt}')
 async def cipher_route_pairs(key: str, prompt: str):
     newConsole = cipher_pairs(key, prompt)
@@ -87,18 +82,22 @@ async def cipher_break(ciphered_message: str):
             'deciphered' : array,
             'most_likely' : most_likely}
 
+@app.get('/morse/')
+async def cipher_morse():
+    return {"server" : "morse section works correctly"}
 @app.get('/morse/{ciphered_message}')
 async def cipher_morse(ciphered_message):
     with open('assets\\mors.json', 'r') as f:
         mors = json.load(f)
-
-    deciphered_message = ''
+    new_console = ''
     for sign in ciphered_message:
         for key in mors.keys():
             if key == sign or key.upper() == sign:
-                deciphered_message += mors[key]
-                breako
-        deciphered_message += '/' if sign != ' ' else ''
+                new_console += mors[key]
+                break
 
-    return {'deciphered' : deciphered_message}
+        new_console += '/' if sign != ' ' else ''
+    if new_console != '':
+        new_console = new_console[:-1]
+    return {'ciphered' : new_console}
 
