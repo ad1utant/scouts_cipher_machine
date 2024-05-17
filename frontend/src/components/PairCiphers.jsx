@@ -20,31 +20,6 @@ import {
 } from "@/components/ui/popover"
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {Separator} from "@/components/ui/separator.jsx";
-
-
-
-const keys = [
-    {
-        value: "gaderypoluki",
-        label: "GA-DE-RY-PO-LU-KI",
-    },
-    {
-        value: "kularyminote",
-        label: "KU-LA-RY-MI-NO-TE",
-    },
-    {
-        value: "koniecmatury",
-        label: "KO-NI-EC-MA-TU-RY",
-    },
-    {
-        value: "politykarenu",
-        label: "PO-LI-TY-KA-RE-NU",
-    },
-    {
-        value: "malinowebuty",
-        label: "MA-LI-NO-WE-BU-TY",
-    },
-]
 function PairCiphers(props) {
     const cipherDecipherRef = useRef();
     const decipherRef = useRef();
@@ -101,11 +76,9 @@ function PairCiphers(props) {
               <div className={'items-start rounded mt-4 bg-muted p-4 col-span-6 md:col-span-3 md:mr-2'}>
                   <h4 className={'col-span-1 scroll-m-20 text-xl font-bold'}>Lista szyfrów monoalfabetycznych</h4>
                   <ul className="list-disc p-0 m-0 ps-1 [&>li]:mt-1 list-inside">
-                      <li>GA-DE-RY-PO-LU-KI</li>
-                      <li>KU-LA-RY-MI-NO-TE</li>
-                      <li>KO-NI-EC-MA-TU-RY</li>
-                      <li>PO-LI-TY-KA-RE-NU</li>
-                      <li>MA-LI-NO-WE-BU-TY</li>
+                      {config.pairCiphers.map((key) => (
+                          <li key = {key}>{convertFormat(key)}</li>
+                      ))}
                   </ul>
               </div>
 
@@ -142,7 +115,7 @@ function PairCiphers(props) {
                               className="col-span-6 justify-between"
                           >
                               {comboboxValue
-                                  ? keys.find((key) => key.value === comboboxValue)?.label
+                                  ? convertFormat(config.pairCiphers.find((key) => key === comboboxValue))
                                   : "Wybierz klucz..."}
                               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
@@ -152,10 +125,10 @@ function PairCiphers(props) {
                               <CommandInput placeholder="Wybierz klucz..." />
                               <CommandEmpty>No key found.</CommandEmpty>
                               <CommandGroup>
-                                  {keys.map((key) => (
+                                  {config.pairCiphers.map((key) => (
                                       <CommandItem
-                                          key={key.value}
-                                          value={key.value}
+                                          key={key}
+                                          value={key}
                                           onSelect={(currentValue) => {
                                               setComboboxValue(currentValue === comboboxValue ? "" : currentValue)
                                               setComboboxOpen(false)
@@ -164,10 +137,10 @@ function PairCiphers(props) {
                                           <Check
                                               className={cn(
                                                   "mr-2 h-4 w-4",
-                                                  comboboxValue === key.value ? "opacity-100" : "opacity-0"
+                                                  comboboxValue === key ? "opacity-100" : "opacity-0"
                                               )}
                                           />
-                                          {key.label}
+                                          {convertFormat(key)}
                                       </CommandItem>
                                   ))}
                               </CommandGroup>
