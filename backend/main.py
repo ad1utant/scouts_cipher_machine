@@ -45,6 +45,9 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+@app.get('/')
+async def defult():
+    return {"x" : "Hello World!"}
 @app.get('/pair/{key}+{prompt}')
 async def cipher_route_pairs(key: str, prompt: str):
     newConsole = cipher_pairs(key, prompt)

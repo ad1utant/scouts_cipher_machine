@@ -1,9 +1,10 @@
+import convertFormat from "@/functions/convertFormat.js";
 import '../styles/index.css'
+import config from '../../../config.json'
 import {useRef, useState} from "react";
 import {Button} from "@/components/ui/button";
 import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 import {
     Command,
@@ -19,6 +20,9 @@ import {
 } from "@/components/ui/popover"
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {Separator} from "@/components/ui/separator.jsx";
+
+
+
 const keys = [
     {
         value: "gaderypoluki",
@@ -48,7 +52,6 @@ function PairCiphers(props) {
     const [comboboxValue, setComboboxValue] = React.useState("")
     const [cipheredDecipheredMessage, setCipheredDecipheredMessage] = useState("")
     const [decipheredMessageData, setDecipheredMessageData] = useState("")
-
     const handleDecipherSubmit = (event) => {
         event.preventDefault();
         const textareaValue =  decipherRef.current.elements.textarea.value;
@@ -58,7 +61,6 @@ function PairCiphers(props) {
                 const newConsole = await response.json();
                 const mostLikelyKey = newConsole.most_likely[0]
                 const mostLikelyMessage = newConsole.most_likely[1]
-
                 console.log(newConsole)
                 setDecipheredMessageData(newConsole)
 
