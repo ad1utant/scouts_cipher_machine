@@ -1,10 +1,14 @@
+// components
+import {ThemeProvider} from "@/components/theme-provider";
 import PairCiphers from "@/components/PairCiphers.jsx";
 import Nav from "@/components/Nav.jsx";
-import { ThemeProvider } from "@/components/theme-provider"
 import Footer from "@/components/Footer.jsx";
-import {Routes, Route, Navigate} from "react-router-dom";
 import Fractions from "@/components/Fractions.jsx";
 import Morsea from "@/components/Morsea.jsx";
+
+//other
+import {Routes, Route, Navigate} from "react-router-dom";
+
 function App(){
     return(
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -12,7 +16,9 @@ function App(){
                 <div className={'col-span-12'}>
                         <Nav/>
                 </div>
+
                 <div className={'col-span-1 md:col-span-2'}/>
+
                 <div className={'col-span-10 md:col-span-8'}>
                     <Routes>
                         <Route path={'/pair'} element={<PairCiphers/>}/>
@@ -21,7 +27,9 @@ function App(){
                         <Route path={'/morse'} element={<Morsea/>} />
                     </Routes>
                 </div>
+
                 <div className={'col-span-1 md:col-span-2'}/>
+
                 <div className={'col-span-12'}>
                     <Footer/>
                 </div>

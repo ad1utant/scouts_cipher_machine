@@ -1,10 +1,19 @@
+//react stuff
 import * as React from "react";
+import {useRef, useState} from "react";
+
+//data
 import keys from '../assets/data/mors_blocks.json';
+
+//ui components
 import {Separator} from "@/components/ui/separator.jsx";
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import {useRef, useState} from "react";
+import {Heading1} from "@/components/Components.jsx";
+
+//other
 import {json} from "react-router-dom";
+
 
 function Morsea(){
     const morseRef = useRef();
@@ -27,7 +36,7 @@ function Morsea(){
 
     return(
         <div className={'grid grid-cols-5'}>
-            <h1 className={'col-span-5 scroll-m-20 text-4xl font-extrabold lg:text-5xl mt-4'}>Alfabet Morse'a</h1>
+            <Heading1 className = {'mt-4'}>Alfabet Morse'a</Heading1>
             <p className={'mt-4 col-span-5 text-xl text-muted-foreground'}>
                 W alfabecie Morse'a każda litera ma swoje odpowiedniki w postaci kombinacji kropek i kresek. Poszczególne litery są oddzielane znakiem "/". Słowa oddzielane są znakiem "//". Zdania oddzielane są znakiem "///".
             </p>

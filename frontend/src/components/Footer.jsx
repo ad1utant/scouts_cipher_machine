@@ -1,3 +1,4 @@
+//import components
 import {Link} from "react-router-dom";
 import {Code2, Github, Instagram} from "lucide-react";
 import {Button} from "@/components/ui/button.jsx";

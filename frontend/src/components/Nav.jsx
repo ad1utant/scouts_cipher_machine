@@ -31,7 +31,7 @@ function Nav(){
                             <Github/>
                         </Button>
                     </a>
-                    <a href={'https://www.instagram.com/kapral.kowalski/'} target={'_blank'}>
+                    <a href={'https://www.instagram.com/mikolaj.marasek/'} target={'_blank'}>
                         <Button variant={'ghost'} size={'icon'}>
                             <Instagram/>
                         </Button>
