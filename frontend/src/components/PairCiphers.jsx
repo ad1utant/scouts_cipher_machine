@@ -6,7 +6,7 @@ import * as React from "react";
 import {useRef, useState} from "react";
 
 //ui components
-import {Heading1, Heading2, MutedParagraph,Output} from "@/components/Components.jsx";
+import {Heading1, Heading2, MutedParagraph, Output} from "@/components/Components.jsx";
 import {Button} from "@/components/ui/button";
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {Separator} from "@/components/ui/separator.jsx";
@@ -197,7 +197,7 @@ function PairCiphers(props) {
                         {decipheredMessageData.most_likely[1]}
                     </Output>
             : null) :
-                    <Output className={'bg-muted'}>
+                    <Output space={true} className={'bg-muted'}>
                         Tutaj wyświetli się odszyfrowana wiadomość.
                     </Output>}
 
