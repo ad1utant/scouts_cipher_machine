@@ -88,7 +88,7 @@ async def cipher_break(ciphered_message: str):
 @app.get('/morse/')
 async def cipher_morse():
     return {"server" : "morse section works correctly"}
-@app.get('/morse/{ciphered_message}')
+@app.get('/morse/ciphering/{ciphered_message}')
 async def cipher_morse(ciphered_message):
     with open('assets\\mors.json', 'r') as f:
         mors = json.load(f)

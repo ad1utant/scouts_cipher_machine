@@ -1,5 +1,7 @@
 import * as React from "react"
 import '../styles/index.css';
+import {Textarea} from "@/components/ui/textarea.jsx";
+import {Button} from "@/components/ui/button.jsx";
 const Heading1 = ({children, className}) =>
 {
     return (
@@ -41,3 +43,16 @@ const Output = ({children, className, space}) =>
     )
 }
 export {Output}
+
+const Form = ({reference, buttonLabel, placeholder, onClick}) => {
+    return(
+        <form className={'gap-4 mt-4 col-span-5 grid grid-cols-12'} ref={reference}>
+            <Textarea className={'col-span-12 md:col-span-7 mr-2 md:mr-0'} type={"text"} name={'textarea'} placeholder={placeholder}/>
+            <div className={'col-span-12 md:col-span-5 grid grid-cols-2'}>
+                <Button type={'submit'} className={'col-span-1 md:col-span-2'} disabled variant={'outline'}>{buttonLabel}</Button>
+                <Button className={'col-span-1 md:col-span-2 ml-2 md:ml-0'} variant={'secondary'} type={"submit"} onClick={onClick}>submit</Button>
+            </div>
+        </form>
+    )
+}
+export {Form}

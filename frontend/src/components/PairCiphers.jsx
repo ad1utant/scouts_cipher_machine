@@ -6,7 +6,7 @@ import * as React from "react";
 import {useRef, useState} from "react";
 
 //ui components
-import {Heading1, Heading2, MutedParagraph, Output} from "@/components/Components.jsx";
+import {Heading1, Heading2, Form, MutedParagraph, Output} from "@/components/Components.jsx";
 import {Button} from "@/components/ui/button";
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {Separator} from "@/components/ui/separator.jsx";
@@ -109,7 +109,6 @@ function PairCiphers(props) {
                 </p>
               </div>
           </div>
-
           <Separator className={'mt-10 mb-10 col-span-5'}/>
 
 
@@ -172,25 +171,16 @@ function PairCiphers(props) {
           <Output space={true} className={'bg-muted'}>
               {cipheredMessageData ? <>{cipheredMessageData}</> : <>{"Tutaj wyświetli się zaszyfrowana lub odszyfrowana wiadomość."}</>}
           </Output>
-
           <Separator className={'mt-10 mb-10 col-span-5'}/>
 
 
           {/*deciphering section*/}
           <Heading2>Odszyfruj wiadomość bez znajomości klucza!</Heading2>
           <MutedParagraph>Poniżej znajduje się program, dzięki któremu możesz odszyfrować wiadomość, bez znajomości klucz. Wystarczy podać treść, a następnie nacisnąć przycisk!</MutedParagraph>
+          <Form reference={decipherRef} placeholder={'odszyfruj wiadomość o nieznanym kluczu'} buttonLabel={'nieznany klucz'} onClick={handleDecipherSubmit}></Form>
 
-          <form className={'gap-4 mt-4 col-span-5 grid grid-cols-12'} ref={decipherRef}>
-              <Textarea className={'col-span-12 md:col-span-7 mr-2 md:mr-0'} type={"text"} name={'textarea'} placeholder={'odszyfruj wiadomość o nieznanym kluczu'}/>
-              <div className={'col-span-12 md:col-span-5 grid grid-cols-2'}>
-                        <Button type={'submit'} className={'col-span-1 md:col-span-2'} disabled variant={'outline'}>nieznany klucz</Button>
-                        <Button className={'col-span-1 md:col-span-2 ml-2 md:ml-0'} variant={'secondary'} type={"submit"} onClick={handleDecipherSubmit}>submit</Button>
-              </div>
-
-
-          </form>
-
-            {decipheredMessageData ?
+          {//works when program recognize cipher
+                decipheredMessageData ?
                 (decipheredMessageData.most_likely ?
                     <Output className={'bg-muted_green'}>
                         {decipheredMessageData.most_likely[0]} {'\n'}
@@ -201,7 +191,8 @@ function PairCiphers(props) {
                         Tutaj wyświetli się odszyfrowana wiadomość.
                     </Output>}
 
-            {decipheredMessageData ? decipheredMessageData.deciphered.map((arr) => {
+            {//works when program can't recognize cipher
+                decipheredMessageData ? decipheredMessageData.deciphered.map((arr) => {
                 return(
                   arr[1] !== decipheredMessageData.most_likely[0] ? (
                       <Output key={arr[1]} className={decipheredMessageData.most_likely ? 'bg-muted_red' : 'bg-muted'}>
