@@ -4,7 +4,8 @@ from functions.keyformat import KeyFormat
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import json
-
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives import serialization
 
 
 keys = [
@@ -85,10 +86,6 @@ async def cipher_break(ciphered_message: str):
             'deciphered' : array,
             'most_likely' : most_likely}
 
-@app.get('/morse/')
-async def cipher_morse():
-    return {"server" : "morse section works correctly"}
-
 @app.get('/morse/ciphering/{ciphered_message}')
 async def cipher_morse(ciphered_message):
     with open('assets\\mors.json', 'r') as f:
@@ -124,3 +121,26 @@ async def cipher_morse(ciphered_message):
                     letter = ''
                     break
     return {'deciphered' : new_console}
+
+@app.get('/generate_rsa')
+async def generate_rsa():
+    print('ask')
+    private_key = rsa.generate_private_key(
+        public_exponent=65537 ,
+        key_size=2048 )
+    public_key = private_key.public_key()
+    private_pem = private_key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption()
+    ).decode()
+
+    # Serialize public key to PEM format
+    public_pem = public_key.public_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PublicFormat.SubjectPublicKeyInfo
+    ).decode()
+    print(private_pem)
+    print(public_pem)
+    # Return serialized keys in response
+    return {"private_key": private_pem, "public_key": public_pem}
