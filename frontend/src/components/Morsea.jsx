@@ -15,6 +15,7 @@ function Morsea(){
     const morseCipheringRef = useRef();
     const morseDecipheringRef = useRef();
     const [cipheredData, setCipheredData] = useState()
+    const [decipheredData, setDecipheredData] = useState()
 
     //defining data from backend -> ciphering message to morse
     const handleMorseCipher = async (event) => {
@@ -31,9 +32,9 @@ function Morsea(){
     const handleMorseDecipher = async (event) => {
         event.preventDefault()
         try {
-            const response = await fetch(`http://127.0.0.1:8000/morse/deciphering/${morseDecipheringRef.current.elements.textarea.value}`)
+            const response = await fetch(`http://127.0.0.1:8000/morse/deciphering/${(morseDecipheringRef.current.elements.textarea.value).replace(/\//g, "@")}`)
             const deciphered = await response.json()
-            setCipheredData(deciphered)
+            setDecipheredData(deciphered)
             console.log(deciphered)
         }catch (err) {
             console.error(err)
@@ -84,7 +85,11 @@ function Morsea(){
                 Poniżej znajduje się program, dzięki któremu możesz odszyfrować wiadomość zaszyforwaną alfabetem morse'a. Wystarczy podać treść w formacie podanym powyżej, a następnie nacisnąć przycisk!
             </MutedParagraph>
             <Form reference={morseDecipheringRef} onClick={handleMorseDecipher} placeholder={'odszyfruj wiadomość zaszyfrowaną alfabetem morse\'a!'} buttonLabel={"morse'a"}></Form>
-
+            <Output space={true} className={'bg-muted mt-4'}>
+                {decipheredData ? ( <>{decipheredData.deciphered}</>
+                ) : ( <>Tutaj wyświetli się zaszyfrowana wiadomość.</>
+                )}
+            </Output>
         </div>
     )
 }

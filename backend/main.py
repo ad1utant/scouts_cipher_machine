@@ -47,7 +47,7 @@ app.add_middleware(
 )
 @app.get('/')
 async def defult():
-    return {"x" : "Hello World!"}
+    return {"server" : "online"}
 @app.get('/pair/{key}+{prompt}')
 async def cipher_route_pairs(key: str, prompt: str):
     newConsole = cipher_pairs(key, prompt)
@@ -88,6 +88,7 @@ async def cipher_break(ciphered_message: str):
 @app.get('/morse/')
 async def cipher_morse():
     return {"server" : "morse section works correctly"}
+
 @app.get('/morse/ciphering/{ciphered_message}')
 async def cipher_morse(ciphered_message):
     with open('assets\\mors.json', 'r') as f:
@@ -104,3 +105,22 @@ async def cipher_morse(ciphered_message):
         new_console = new_console[:-1]
     return {'ciphered' : new_console}
 
+@app.get('/morse/deciphering/{ciphered_message}')
+async def cipher_morse(ciphered_message):
+    with open('assets\\mors.json', 'r') as f:
+        mors = json.load(f)
+    new_console, letter, word_list = '','',[]
+    for sign_index in range(len(ciphered_message)):
+        if ciphered_message[sign_index] == '@' and ciphered_message[sign_index - 1] == '@':
+            new_console += ' '
+        if ciphered_message[sign_index] == '@':
+            continue
+        letter += ciphered_message[sign_index]
+        if sign_index == len(ciphered_message) - 1 or ciphered_message[sign_index + 1] == '@':
+            print(letter)
+            for key, value in mors.items():
+                if value == letter:
+                    new_console += key
+                    letter = ''
+                    break
+    return {'deciphered' : new_console}
