@@ -6,7 +6,7 @@ import * as React from "react";
 import {useRef, useState} from "react";
 
 //ui components
-import {Heading1, Heading2, Form, MutedParagraph, Output} from "@/components/Components.jsx";
+import {Heading1, Heading2, Form, MutedParagraph, Output, Heading4} from "@/components/Components.jsx";
 import {Button} from "@/components/ui/button";
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {Separator} from "@/components/ui/separator.jsx";
@@ -87,7 +87,7 @@ function PairCiphers(props) {
 
           <div className={'grid grid-cols-6 col-span-5 justify-between'}>
               <div className={'items-start rounded mt-4 bg-muted p-4 col-span-6 md:col-span-3 sm:col-span-6 md:mr-2'}>
-                  <h4 className={'col-span-1 scroll-m-20 text-xl font-bold'}>Lista szyfrów monoalfabetycznych</h4>
+                  <Heading4>Lista szyfrów monoalfabetycznych</Heading4>
                   <ul className="list-disc p-0 m-0 ps-1 [&>li]:mt-1 list-inside">
 
                       {config.pairCiphers.map((key) => (
@@ -98,7 +98,7 @@ function PairCiphers(props) {
               </div>
 
               <div className={'items-start rounded mt-4 bg-muted p-4 col-span-6 md:col-span-3 sm:col-span-6 md:ml-2'}>
-                <h4 className={'col-span-1 scroll-m-20 text-xl font-bold'}>Proces Szyfrowania</h4>
+                  <Heading4>Proces Szyfrowania</Heading4>
                 <p className={'leading-7 [&:not(:first-child)]:mt-1 whitespace-pre-line'}>
                     szyfr: GA-DE-RY-PO-LU-KI{'\n'}
                     wiadomość: MOTYL {'\n'}

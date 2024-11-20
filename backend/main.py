@@ -124,7 +124,6 @@ async def cipher_morse(ciphered_message):
 
 @app.get('/generate_rsa')
 async def generate_rsa():
-    print('ask')
     private_key = rsa.generate_private_key(
         public_exponent=65537 ,
         key_size=2048 )
@@ -140,7 +139,5 @@ async def generate_rsa():
         encoding=serialization.Encoding.PEM,
         format=serialization.PublicFormat.SubjectPublicKeyInfo
     ).decode()
-    print(private_pem)
-    print(public_pem)
     # Return serialized keys in response
     return {"private_key": private_pem, "public_key": public_pem}

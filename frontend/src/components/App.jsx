@@ -5,6 +5,7 @@ import Nav from "@/components/Nav.jsx";
 import Footer from "@/components/Footer.jsx";
 import Fractions from "@/components/Fractions.jsx";
 import Morsea from "@/components/Morsea.jsx";
+import Rsa from "@/components/Rsa.jsx";
 
 //other
 import {Routes, Route, Navigate} from "react-router-dom";
@@ -25,6 +26,7 @@ function App(){
                         <Route path={'/'} element={<Navigate to={'/pair'}/>}/>
                         <Route path={'/fract'} element={<Fractions/>} />
                         <Route path={'/morse'} element={<Morsea/>} />
+                        <Route path={'/rsa'} element={<Rsa/>} />
                     </Routes>
                 </div>
 

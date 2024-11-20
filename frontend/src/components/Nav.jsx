@@ -23,6 +23,9 @@ function Nav(){
                     <Link to={'/fract'}>
                         Ułamkowy
                     </Link>
+                    <Link to={'/rsa'}>
+                        RSA
+                    </Link>
                 </div>
 
                 <div className={'flex items-center gap-4'}>

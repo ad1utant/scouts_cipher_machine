@@ -20,7 +20,15 @@ const Heading2 = ({children, className}) =>
     )
 }
 export {Heading2}
-
+const Heading4 = ({children, className}) =>
+{
+    return (
+        <h4 className={`col-span-1 scroll-m-20 text-xl font-bold ${className}`}>
+            {children}
+        </h4>
+    )
+}
+export {Heading4}
 const MutedParagraph = ({children, className}) =>
 {
     return (

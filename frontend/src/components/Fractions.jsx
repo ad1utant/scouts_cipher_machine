@@ -19,22 +19,22 @@ function Fractions(){
                 <div className="frac">
                     <span>f&nbsp;g&nbsp;h&nbsp;i&nbsp;j</span>
                     <span className="symbol">/</span>
-                    <span className="bottom">1</span>
+                    <span className="bottom">2</span>
                 </div>
                 <div className="frac">
                     <span>k&nbsp;l&nbsp;m&nbsp;n&nbsp;o</span>
                     <span className="symbol">/</span>
-                    <span className="bottom">1</span>
+                    <span className="bottom">3</span>
                 </div>
                 <div className="frac">
                     <span>p&nbsp;r&nbsp;s&nbsp;t&nbsp;u</span>
                     <span className="symbol">/</span>
-                    <span className="bottom">1</span>
+                    <span className="bottom">4</span>
                 </div>
                 <div className="frac">
                     <span>w&nbsp;y&nbsp;z</span>
                     <span className="symbol">/</span>
-                    <span className="bottom">1</span>
+                    <span className="bottom">5</span>
                 </div>
 
             </div>
