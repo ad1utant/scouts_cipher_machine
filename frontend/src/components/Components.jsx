@@ -64,3 +64,16 @@ const Form = ({reference, buttonLabel, placeholder, onClick}) => {
     )
 }
 export {Form}
+
+const FormRsa = ({reference, onClick, placeholder}) => {
+    return(
+        <form className={'gap-4 mt-4 col-span-5 grid grid-cols-12'} ref={reference}>
+            <div className={'bg-muted rounded col-span-12 md:col-span-7 p-4 mr-0 lg:mr-2'}>Wpisz długość klucza, by móc go wygenerować!</div>
+            <div className={'col-span-12 md:col-span-5 grid grid-cols-2'}>
+                <Textarea className={'h-10 justify-items-center col-span-1 md:col-span-2'} type={"text"} name={'textarea'} placeholder={placeholder}/>
+                <Button className={'col-span-1 md:col-span-2 ml-2 md:ml-0 min-h-0'} variant={'secondary'} type={"submit"} onClick={onClick}>submit</Button>
+            </div>
+        </form>
+    )
+}
+export {FormRsa}

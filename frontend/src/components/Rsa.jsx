@@ -1,9 +1,24 @@
-import * as React from "react";
-import {Form, Heading1, Heading2, Heading4, MutedParagraph, Output} from "@/components/Components.jsx";
+import "react";
+import {Form, FormRsa, Heading1, Heading2, Heading4, MutedParagraph, Output} from "@/components/Components.jsx";
 import convertFormat from "@/functions/convertFormat.js";
 import {Separator} from "@/components/ui/separator.jsx";
+import {useRef, useState} from "react";
+
 
 function Rsa(props){
+    const RsaGeneratingRef = useRef(null);
+    const [cipheredData, setCipheredData] = useState(0);
+    const handleGenerateRsa = async (event) => {
+        event.preventDefault()
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/generate_rsa/${RsaGeneratingRef.current.elements.textarea.value}`)
+            const ciphered = await response.json()
+            setCipheredData(ciphered)
+            console.log(ciphered)
+        }catch (err) {
+            console.error(err)
+        }
+    }
     return(
         <div className={'grid grid-cols-5'}>
             <Heading1 className={'mt-4'}>Algorytm Rivesta-Shamira-Adlemana</Heading1>
@@ -27,9 +42,22 @@ function Rsa(props){
             </div>
 
             <Separator className={'mt-10 mb-10 col-span-5'}/>
+            <Heading2>Wygeneruj parę kluczy!</Heading2>
+            <MutedParagraph>Poniżej znajduje się program, którym wygenerujesz swoją własną parę kluczy RSA! Aby wygenerować parę kluczy należy wpisać bitową długość klucza - możesz wpisać wartość pomiędzy 1024 - 4096. Klucz uznawany za bezpieczny w dzisiejszych czasach zaczyna się od 2048 bitów.</MutedParagraph>
+            <FormRsa reference={RsaGeneratingRef} onClick={handleGenerateRsa}/>
+            {cipheredData['request'] === 'ok' ? <div className={'col-span-5'}>
+                <Heading2 className={'mt-4'}>Twój klucz publiczny:</Heading2>
+                <MutedParagraph> Poniżej znajduje się twój klucz publiczny, możesz podać go każdemu od kogo chcesz otrzymać zaszyfrowaną wiadomość.</MutedParagraph>
+                <Output className={'bg-muted p-4 col-span-5'}>
+                    <p className={'break-words'}>{cipheredData.public_key}</p>
+                </Output>
 
-
-
+                <Heading2 className={'mt-4'}>Twój klucz prywatny:</Heading2>
+                <MutedParagraph>Poniżej znajduje się twój klucz prywatny - służy on do deszyfrowania. Pamiętaj, żeby nie podawac go nikomu!</MutedParagraph>
+                <Output className={'bg-muted p-4 col-span-5'}>
+                    <p className={'break-words'}>{cipheredData.private_key}</p>
+                </Output>
+            </div> : null}
         </div>
     )
 }

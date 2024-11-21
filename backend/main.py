@@ -122,22 +122,33 @@ async def cipher_morse(ciphered_message):
                     break
     return {'deciphered' : new_console}
 
-@app.get('/generate_rsa')
-async def generate_rsa():
+
+
+@app.get('/generate_rsa/')
+async def generate_rsa_blank():
+    return {'request': 'error'}
+
+@app.get('/generate_rsa/{key_size}')
+async def generate_rsa(key_size):
+    try:
+        key_size = int(key_size)
+        if key_size < 1024 or key_size > 4096:
+            raise Exception("to small or to big key_size")
+    except Exception:
+        return {'request':'error'}
     private_key = rsa.generate_private_key(
         public_exponent=65537 ,
-        key_size=2048 )
+        key_size=key_size )
     public_key = private_key.public_key()
     private_pem = private_key.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.PKCS8,
         encryption_algorithm=serialization.NoEncryption()
     ).decode()
-
     # Serialize public key to PEM format
     public_pem = public_key.public_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PublicFormat.SubjectPublicKeyInfo
     ).decode()
     # Return serialized keys in response
-    return {"private_key": private_pem, "public_key": public_pem}
+    return {"request" : "ok", "private_key": private_pem, "public_key": public_pem}
